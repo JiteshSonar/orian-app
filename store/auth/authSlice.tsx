@@ -1,13 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface AuthState {
+  token: string | null;
+  isAuthenticated: boolean;
+}
+
+const initialState: AuthState = {
+  token: null,
+  isAuthenticated: false,
+};
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    token: null, // JWT Token storage
-    isAuthenticated: false, // User authentication status
-  },
+  initialState,
   reducers: {
-    setToken: (state, action) => {
+    setToken: (state, action: PayloadAction<string | null>) => {
       state.token = action.payload;
       state.isAuthenticated = !!action.payload;
     },

@@ -26,21 +26,26 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <Icon name="gears" size={28} />,
+          tabBarIcon: ({ color }) => <Icon name="home" size={28} />,
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: "Explore",
-          tabBarIcon: ({ color }) => <Icon name="gears" size={28} />,
+          tabBarIcon: ({ color }) => (
+            <Icon
+              name="rocket"
+              size={25}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="statistics"
         options={{
           title: "Statistics",
-          tabBarIcon: ({ color }) => <Icon name="gears" size={28} />,
+          tabBarIcon: ({ color }) => <Icon name="bar-chart-o" size={25} />,
         }}
       />
       <Tabs.Screen

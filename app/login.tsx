@@ -35,7 +35,6 @@ const loginValidationSchema = yup.object().shape({
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const { token, user, saveToken, saveUser } = useAuth();
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [email, setEmail] = useState("");
@@ -55,7 +54,7 @@ const Login = () => {
         dispatch(setToken(response.token));
       }
       if ((response.staus = "Success")) {
-        navigation.navigate("(tabs)");
+        navigation.navigate("(tabs)"); 
       }
     } catch (error) {
       console.error("Login failed:", error);
