@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import TopBar from "@/components/TopBarWithBackNav";
 
 export default function Assets() {
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,7 @@ export default function Assets() {
 
   return (
     <SafeAreaView>
+      <TopBar title="Company Assets" />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
           <Text style={styles.pageHeading}>Assets</Text>
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     color: "#63686E",
-    paddingBottom: 20,
+    paddingBottom: 10,
   },
   inputContainer: {
     flexDirection: "row",
