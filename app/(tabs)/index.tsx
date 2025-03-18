@@ -42,16 +42,24 @@ export default function HomeScreen() {
   };
 
   const getInfoOfCards = (id) => {
-    console.log("card ID" , id)
+    console.log("card ID", id);
     try {
-      // navigation.navigate("employeedetail");
-      navigation.navigate("assets/assets");
-    } catch (error) {
-      
-    } finally {
+      switch (id) {
+        case 1:
+          navigation.navigate("employee/employees");
+          break;
 
+        case 2:
+          navigation.navigate("assets/assets");
+          break;
+
+        default:
+          break;
+      }
+    } catch (error) {
+    } finally {
     }
-  }
+  };
 
   useEffect(() => {
     getLoggedUser();
@@ -93,18 +101,21 @@ export default function HomeScreen() {
             justifyContent: "center",
             alignItems: "center",
             marginTop: 10,
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap'
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
           }}
         >
           {data.map((item) => (
-            <ItemCode icon={item.icon} text={item.text} color={item.color} onPressButton={() => getInfoOfCards(item.id)}/>
+            <ItemCode
+              icon={item.icon}
+              text={item.text}
+              color={item.color}
+              onPressButton={() => getInfoOfCards(item.id)}
+            />
           ))}
         </View>
-        <View>
-          {/* <InfoCard /> */}
-        </View>
+        <View>{/* <InfoCard /> */}</View>
       </View>
     </SafeAreaView>
   );

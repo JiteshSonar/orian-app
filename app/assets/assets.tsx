@@ -23,6 +23,7 @@ export default function Assets() {
   const [searchText, setSearchText] = useState("");
 
   const navigation = useNavigation();
+
   const getAsset = async () => {
     try {
       setLoading(true);
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
   loadingContainer: {
     flexGrow: 1,
     width: "100%",
+    height: "100%",
     padding: 20,
     backgroundColor: "#ffffff",
     justifyContent: "center",
@@ -159,10 +161,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     backgroundColor: "#8CE8C9",
-    paddingTop: 4,
-    paddingBottom: 4,
+    paddingTop: 5,
+    paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 12,
+    borderRadius: 8,
   },
 });

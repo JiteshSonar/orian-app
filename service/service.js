@@ -26,6 +26,13 @@ export const apiService = {
 
   getAsset: () => apiCall("/api/user/get_asset_categories", { method: "GET" }),
 
+  getAssetDetail: (id) =>
+    apiCall("/api/user/get-asset-detail/" + id, { method: "GET" }),
+
+  addAsset: (data) => apiCall("/api/user/asset", { method: "POST", data }),
+
+  getEmployees: () => apiCall("/api/user/employ", { method: "GET" }),
+
   //   createUser: (data) => apiCall("/users", { method: "POST", data }),
   //   updateUser: (id, data) => apiCall(`/users/${id}`, { method: "PUT", data }),
   //   deleteUser: (id) => apiCall(`/users/${id}`, { method: "DELETE" }),

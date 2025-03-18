@@ -45,9 +45,14 @@ export default function RootLayout() {
           <Stack.Screen name="signup" />
           <Stack.Screen name="dashboard" />
           <Stack.Screen name="employeedetail" />
+
           <Stack.Screen name="assets/assets" />
           <Stack.Screen name="assets/addAsset" />
           <Stack.Screen name="assets/assetdetailscreen" />
+
+          <Stack.Screen name="employee/addEmployee" />
+          <Stack.Screen name="employee/employeeDetails" />
+          <Stack.Screen name="employee/employees" />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

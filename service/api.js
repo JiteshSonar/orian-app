@@ -1,7 +1,7 @@
 import axios from "axios";
 
+// const BASE_URL = "http://192.168.1.34:8000";
 const BASE_URL = "http://192.168.1.22:8000";
-// const BASE_URL = "http://172.20.10.5:8000";
 
 const apiCall = async (endpoint, options = {}) => {
   const {
@@ -12,7 +12,7 @@ const apiCall = async (endpoint, options = {}) => {
     token = null,
   } = options;
 
-  const apiHeaders = {
+  const apiHeaders = { 
     "Content-Type": "application/json",
     ...headers,
     ...(token ? { Authorization: `Bearer ${token}` } : {}),

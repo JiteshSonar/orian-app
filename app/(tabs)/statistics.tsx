@@ -1,12 +1,12 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from "react";
+import { Text, View } from "react-native";
 
 const statistics = () => {
   return (
     <View>
-        <Text>STATISTICS</Text>
+      <Text>STATISTICS</Text>
     </View>
-  )
-}
+  );
+};
 
-export default statistics
+export default statistics;

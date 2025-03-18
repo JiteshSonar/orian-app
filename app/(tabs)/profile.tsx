@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -13,7 +13,7 @@ const profile = () => {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default profile
+export default profile;

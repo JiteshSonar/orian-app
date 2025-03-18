@@ -8,6 +8,7 @@ const TextField = ({
   placeholder,
   type,
   secureTextEntry,
+  onPress
 }) => {
   return (
     <View style={styles.container}>
@@ -15,10 +16,11 @@ const TextField = ({
       <TextInput
         style={styles.input}
         value={value}
-        onChangeText={onChange}
+        onChangeText={(e) => onChange(e)}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         keyboardType={type === "number" ? "numeric" : "default"}
+        onPress={onPress}
       />
     </View>
   );
@@ -27,7 +29,7 @@ const TextField = ({
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    width: '100%'
+    width: '100%',
   },
   label: {
     fontSize: 16,
@@ -35,10 +37,13 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   },
   input: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "#ccc",
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 12,
+    height: 50,
+    fontSize: 16
+
   },
   imp: {
     color: 'red'
