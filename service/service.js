@@ -33,7 +33,8 @@ export const apiService = {
 
   getEmployees: () => apiCall("/api/user/employ", { method: "GET" }),
 
-  //   createUser: (data) => apiCall("/users", { method: "POST", data }),
-  //   updateUser: (id, data) => apiCall(`/users/${id}`, { method: "PUT", data }),
-  //   deleteUser: (id) => apiCall(`/users/${id}`, { method: "DELETE" }),
+  getEmployDetail: (id) =>
+    apiCall("/api/user/get-employe/" + id, { method: "GET" }),
+
+  getSkills: () => apiCall("/api/user/skills", { method: "GET" }),
 };

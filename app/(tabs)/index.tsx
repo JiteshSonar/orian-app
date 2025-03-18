@@ -14,30 +14,57 @@ import { useSelector, TypedUseSelectorHook } from "react-redux";
 import { RootState } from "../../store/store";
 import { router } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
+import SearchableDropdown from "../../components/SearchableDropdown";
+import React from "react";
 
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 export default function HomeScreen() {
+  const [selectedOption, setSelectedOption] = useState("");
+  const [skills, setSkills] = useState();
+  const [user, setUser] = useState();
+
+  const handleOptionSelected = (option) => {
+    setSelectedOption(option);
+    console.log("Selected option:", option);
+  };
+
   const navigation = useNavigation();
+  const options = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Date",
+    "Grape",
+    "Lemon",
+    "Mango",
+    "Orange",
+    "Pineapple",
+    "Strawberry",
+  ];
 
   const data = [
-    { id: 1, icon: "people", text: "Employee", color: "#6200ea" },
-    { id: 2, icon: "people", text: "Asset", color: "#ff5722" },
-    { id: 3, icon: "settings-outline", text: "Inventory", color: "#4caf50" },
-    {
-      id: 4,
-      icon: "notifications-outline",
-      text: "Notifications",
-      color: "#fbc02d",
-    },
+    { id: 1, icon: "people", text: "Employee", color: "#4caf50" },
+    { id: 2, icon: "people", text: "Asset", color: "#fbc02d" },
   ];
   const token = useTypedSelector((state) => state.auth.token);
 
-  const getLoggedUser = () => {
+  const getLoggedUser = async () => {
     try {
-      const res = apiService.getLoggedUser({ token });
+      const res = await apiService.getLoggedUser({ token });
+      setUser(res.user);
       console.log("Logged Uer Details: ", res);
     } catch (error) {
       console.log("Logged user details not fetched ..", error);
+    }
+  };
+
+  const getSkills = async () => {
+    try {
+      const res = await apiService.getSkills();
+      setSkills(res.skills);
+      console.log("skills---", skills)
+    } catch (error) {
+      console.log("failed to get skills", error);
     }
   };
 
@@ -63,6 +90,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     getLoggedUser();
+    getSkills();
   }, [token]);
 
   return (
@@ -81,12 +109,15 @@ export default function HomeScreen() {
           </View>
           <View style={styles.grayInfoDet}>
             <View style={styles.flexJustfyBet}>
-              <Text style={styles.grayCardTitle}>Jitesh Sonar</Text>
+              <Text style={styles.grayCardTitle}>{user?.name}</Text>
               <Icon name="edit" size={14} />
             </View>
             <View style={styles.flexJustfyBet}>
-              <Text>Software Developer {"  "}</Text>
-              <Text>37 friends</Text>
+              <Text>
+                {user?.email}
+                {"  "}
+              </Text>
+              {/* <Text>37 friends</Text> */}
             </View>
           </View>
         </View>
@@ -115,7 +146,20 @@ export default function HomeScreen() {
             />
           ))}
         </View>
-        <View>{/* <InfoCard /> */}</View>
+        {/* <View>
+          <Text style={styles.title}>Select a fruit</Text>
+          <SearchableDropdown
+            options={skills}
+            onOptionSelected={handleOptionSelected}
+          />
+          {selectedOption ? (
+            <Text style={styles.selectedText}>
+              You selected: {selectedOption}
+            </Text>
+          ) : (
+            <Text style={styles.selectedText}>No option selected</Text>
+          )}
+        </View> */}
       </View>
     </SafeAreaView>
   );
@@ -197,5 +241,14 @@ const styles = StyleSheet.create({
     flex: 2,
     gap: 10,
     flexWrap: "wrap",
+  },
+
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  selectedText: {
+    marginTop: 20,
+    fontSize: 18,
   },
 });

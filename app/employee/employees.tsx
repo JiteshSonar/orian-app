@@ -1,5 +1,5 @@
 import { apiService } from "@/service/service";
-import {
+import React, {
   StyleSheet,
   View,
   Text,
@@ -15,7 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import TopBar from "@/components/TopBarWithBackNav";
-import EmployCard from "@/components/EmployCard";
+import EmployeeCard from "@/components/EmployCard";
 import usermale from "../../assets/images/user.jpg";
 
 export default function Assets() {
@@ -26,7 +26,7 @@ export default function Assets() {
 
   const navigation = useNavigation();
 
-  const getAsset = async () => {
+  const getEmployee = async () => {
     try {
       setLoading(true);
       const res = await apiService.getEmployees();
@@ -45,27 +45,26 @@ export default function Assets() {
     const filtered = employees.filter((employ) => {
       return employ.employeeName.toLowerCase().includes(text.toLowerCase());
     });
-
     setFilteredEmploye(filtered);
   };
 
   useEffect(() => {
-    getAsset();
+    getEmployee();
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.main}>
       <TopBar title="Company Employees" />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
           <Text style={styles.pageHeading}>Total Employees</Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.addAssetBtn}
             // onPress={() => navigation.navigate("assets/addAsset")}
           >
             <Icon name="add" size={18} />
-            <Text style={styles.headingtxt}>Add Asset</Text>
-          </TouchableOpacity>
+            <Text style={styles.headingtxt}>Add Employ</Text>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.flex}>
           <View
@@ -96,7 +95,7 @@ export default function Assets() {
           </View>
         ) : filteredEmploye.length > 0 ? (
           filteredEmploye.map((employ, index) => (
-            <EmployCard key={index} employ={employ} />
+            <EmployeeCard key={index} employ={employ} />
           ))
         ) : (
           <Text>No Employees Found</Text>
@@ -107,6 +106,12 @@ export default function Assets() {
 }
 
 const styles = StyleSheet.create({
+  main: {
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    backgroundColor: "#fff",
+  },
   container: {
     flexGrow: 1,
     width: "100%",

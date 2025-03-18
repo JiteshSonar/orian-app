@@ -1,9 +1,15 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import usermale from "../assets/images/user.jpg";
-
+import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { useDispatch } from "react-redux";
+import { setId } from "@/store/auth/globalStateSlice";
 
 const EmployeeCard = ({ employ }) => {
+  const navigation = useNavigation();
+  const router = useRouter();
+  const dispatch = useDispatch();
   return (
     <View style={styles.card}>
       {/* Profile Section */}
@@ -43,6 +49,16 @@ const EmployeeCard = ({ employ }) => {
           {new Date(employ.joiningDate).toDateString()}
         </Text>
       </Text>
+
+      <TouchableOpacity
+        style={styles.greenBtn}
+        onPress={() => {
+          dispatch(setId(employ.employeeId));
+          navigation.navigate("employee/employeeDetails");
+        }}
+      >
+        <Text style={styles.eVoucher}>View Details</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -88,6 +104,20 @@ const styles = StyleSheet.create({
   detailValue: {
     fontWeight: "bold",
     color: "#000",
+  },
+  greenBtn: {
+    width: "100%",
+    height: 40,
+    backgroundColor: "#8CE8C9",
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  eVoucher: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#008000",
   },
 });
 
